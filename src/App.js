@@ -1,8 +1,12 @@
 import { Navbar,Nav,NavDropdown,Form,Button,FormControl,Container,Carousel } from 'react-bootstrap';
 import React, { useState } from 'react';
 import './App.css';
+import Data from './data.js'
 
 function App() {
+
+  let [shoesData, shoesData_change] = useState(Data);
+
   return (
     <div className="App">
           <Navbar bg="dark" variant="dark">
@@ -16,45 +20,40 @@ function App() {
             </Container>
           </Navbar>
 
-          <Carousel>
-            <Carousel.Item>
-              <img
-                className="d-block w-80"
-                src="./shoes1.jpg"
-                alt="1번째 신발"
-              />
-              <Carousel.Caption>
-                <h3>First slide label</h3>
-                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-80"
-                src="./shoes2.jpg"
-                alt="2번째 신발"
-              />
+          <img
+            src="./appre.png"
+            alt="thank_you"
+            style={ {align:"center", width:"30%"} }
+          />
+          <br/>
+          <br/>
+          <h3>오늘의 신발 세일</h3>
+          <br/>
 
-              <Carousel.Caption>
-                <h3>Second slide label</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-80"
-                src="./shoes3.jpg"
-                alt="3번째 신발"
-              />
-
-              <Carousel.Caption>
-                <h3>Third slide label</h3>
-                <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-              </Carousel.Caption>
-            </Carousel.Item>
-          </Carousel>
+          <div className="container">
+            <div className="row">
+              {
+                shoesData.map(function(item,cnt){
+                  return(
+                      <ShoesList data={shoesData[cnt]} key={cnt}></ShoesList>
+                  )
+                })
+              }
+              
+              
+            </div>
+          </div>
     </div>
   );
 }
 
+function ShoesList(props){
+  return(
+    <div className="col-md-4">
+      <img src={props.data.img} width="100%" />
+      <h4>{props.data.title}</h4>
+      <p>{props.data.content} & {props.data.price}</p>
+      </div>
+  )
+}
 export default App;
