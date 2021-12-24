@@ -124,3 +124,18 @@ export {data1, data2}
 - (App.js)
 import {data1, data2} from './data.js';
 // export했던 변수명을 그대로 사용 (변수 이름 작명 X)
+
+
+11. Router
+- Router : 여러 페이지 이용 시 사용
+  - BrowseRouter : URL 맨 뒤에 # 이 붙지 않은 채로 시작
+  - HashRouter : URL 맨 뒤에 # 이 붙은 채로 시작
+ex)
+<Route path="/"> 
+  <div>메인페이지인데요</div>
+</Route>
+<Route path="/detail">
+  <div>상세페이지인데요</div>
+</Route>
+// 위 코드에서 /detail을 들어가면 메인페이지인데요 도 보인다.
+// 이게 싫다면 <Route exact path="/"></Route> 로 하면 된다.
