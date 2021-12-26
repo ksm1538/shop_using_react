@@ -139,3 +139,37 @@ ex)
 </Route>
 // 위 코드에서 /detail을 들어가면 메인페이지인데요 도 보인다.
 // 이게 싫다면 <Route exact path="/"></Route> 로 하면 된다.
+
+
+12. NavBar에서 링크 사용
+ex)
+<div>
+  <Navbar>
+      <Nav.Link> <Link to="/">Home</Link> </Nav.Link>
+      <Nav.Link> <Link to="/detail">Detail</Link> </Nav.Link>
+  </Navbar> 
+</div>
+
+
+13. useHistory 기능
+ex)
+let history = useHistory();
+history.goBack();     // 뒤로가기
+history.push("/");    // /로 이동
+
+
+14. Switch
+- Switch 안에 있는 Router에서 여러개의 path가 매칭되어도 맨 위의 Router만 보여주는 기능
+ex)
+<Switch>
+  <Route path="/">
+    어쩌구
+  </Route>
+  <Route path="/detail">
+    <Detail/>
+  </Route>
+  <Route path="/:id">
+    <div>새로 만든 route입니다</div>
+  </Route>
+</Switch>
+// 이러면 맨 위의 /만 보여줌

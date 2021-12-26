@@ -1,8 +1,9 @@
 import { Navbar,Nav,NavDropdown,Form,Button,FormControl,Container,Carousel } from 'react-bootstrap';
 import React, { useState } from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Data from './data.js'
-import { Link, Route, Switch } from 'react-router-dom';
+import Detail from './detail.js'
 
 function App() {
 
@@ -12,15 +13,15 @@ function App() {
     <div className="App">
           <Navbar bg="dark" variant="dark">
             <Container>
-            <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+            <Navbar.Brand href="#home">SM's Shop</Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <Nav.Link href="#features">Features</Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
+              <Nav.Link><Link to="/">Home</Link></Nav.Link>
+              <Nav.Link><Link to="/detail">Detail</Link></Nav.Link>
             </Nav>
             </Container>
           </Navbar>
 
+          <Switch>
             <Route path="/"> 
               <img
                 src="./appre.png"
@@ -44,21 +45,15 @@ function App() {
                 </div>
               </div>
             </Route>
+            
             <Route path="/detail">
-              <div className="container">
-                <div className="row">
-                  <div className="col-md-6">
-                    <img src="./20211222_223425.jpg" width="100%" />
-                  </div>
-                  <div className="col-md-6 mt-4">
-                    <h4 className="pt-5">상품명</h4>
-                    <p>상품설명</p>
-                    <p>140000원</p>
-                    <button className="btn btn-danger">주문하기</button> 
-                  </div>
-                </div>
-              </div> 
+              <Detail/>
             </Route>
+
+            <Route path="/:id">
+              <div>새로 만든 route입니다</div>
+            </Route>
+          </Switch>
     </div>
   );
 }
