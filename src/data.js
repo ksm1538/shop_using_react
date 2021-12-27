@@ -4,7 +4,7 @@ export default [
     title : "White and Red",
     content : "Jordan 1",
     price : 140000,
-	img:"./20211222_223425.jpg"
+	  img:"/imgs/20211222_223425.jpg"
   },
 
   {
@@ -12,7 +12,7 @@ export default [
     title : "White and Green",
     content : "Jordan 2",
     price : 150000,
-	img:"./20211222_223415.jpg"
+	  img:"/imgs/20211222_223415.jpg"
   },
 
   {
@@ -20,6 +20,6 @@ export default [
     title : "White and Blue",
     content : "Jordan 3",
     price : 160000,
-	img:"./20211222_223431.jpg"
+	  img:"/imgs/20211222_223431.jpg"
   }
 ] 

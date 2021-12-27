@@ -21,10 +21,9 @@ function App() {
             </Container>
           </Navbar>
 
-          <Switch>
             <Route path="/"> 
               <img
-                src="./appre.png"
+                src="/imgs/appre.png"
                 alt="thank_you"
                 style={ {align:"center", width:"30%"} }
               />
@@ -46,14 +45,9 @@ function App() {
               </div>
             </Route>
             
-            <Route path="/detail">
-              <Detail/>
+            <Route path="/detail/:id">
+              <Detail data={shoesData}></Detail>
             </Route>
-
-            <Route path="/:id">
-              <div>새로 만든 route입니다</div>
-            </Route>
-          </Switch>
     </div>
   );
 }

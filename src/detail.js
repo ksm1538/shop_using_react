@@ -1,19 +1,25 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
-function Detail(){
+function Detail(props){
 
     let history = useHistory();
+    let { id } = useParams();
+
+    let findGood = props.data.find(function(Good){
+      return Good.id == id
+    });
+
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-6">
-            <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
+            <img src={findGood.img} width="100%" />
           </div>
           <div className="col-md-6 mt-4">
-            <h4 className="pt-5">상품명</h4>
-            <p>상품설명</p>
-            <p>120000원</p>
+            <h4 className="pt-5">{findGood.title}</h4>
+            <p>{findGood.content}</p>
+            <p>{findGood.price}</p>
             <button className="btn btn-danger">주문하기</button> 
             &nbsp;
             <button onClick={()=>{ history.goBack() }} className="btn btn-danger">뒤로가기</button> 
