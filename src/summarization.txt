@@ -130,6 +130,9 @@ import {data1, data2} from './data.js';
 - Router : 여러 페이지 이용 시 사용
   - BrowseRouter : URL 맨 뒤에 # 이 붙지 않은 채로 시작
   - HashRouter : URL 맨 뒤에 # 이 붙은 채로 시작
+- 설치
+  - yarn 환경 : yarn add react-router-dom@5
+  - npm 환경 : npm install react-router-dom@5 
 ex)
 <Route path="/"> 
   <div>메인페이지인데요</div>
@@ -202,5 +205,36 @@ let findGood = props.data.find(function(Good){
 ex) 
 C:\KSM_PRJ\shop_using_react\public\imgs\appre.png
 -> /imgs/appre.png
+
+
+17. Styled-components
+- 컴포넌트 생성 시, 스타일을 바로 적용하는 기능
+- 설치
+  - yarn 환경 : yarn add styled-components
+  - npm 환경 : npm install styled-components
+- Styled-Components 생성 방법
+  1. 변수 명은 처음에는 대문자. (다른 컴포넌트와 동일)
+  2. props를 이용해 변수 사용 가능
+  3. ''를 이용해서 스타일을 지정 (1왼쪽에 있는 ~키)
+ex)
+import styled from 'styled-components';
+...
+
+let Box = styled.div`
+  padding : 20px;
+`;
+let H4size = styled.h4`
+  font-Size : 20px;
+  color : ${ props => props.color };
+`;
+...
+
+return(
+	...
+	<Box>
+    <H4size color={'red'}>빨간색 테스트.</H4size>
+    <H4size color={'green'}>초록색 테스트.</H4size>
+  </Box>
+)
 
 
