@@ -1,0 +1,20 @@
+$color_var : #0000FF;
+
+.red {
+    color : $color_var;
+  }
+
+.alert_SM {
+    padding : 15px;
+    background : #d86a6a;
+    max-width : 500px;
+    width : 100%;
+    border-radius : 5px;
+    margin : auto;
+    color:black;
+    font-weight: bold;
+}
+
+.alert_SM p {
+    margin : 0;
+} 
