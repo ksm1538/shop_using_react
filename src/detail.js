@@ -25,9 +25,15 @@ function Detail(props){
     const [show, setShow] = useState(true);
 
     // Detail 컴포넌트가 마운트 or 재렌더링 되면 작동하는 코드
+    // [show] 는 마운트 or 재렌더링 될 때 조건에 state 변수를 지정하는 것.
+    // 이 컴포넌트가 마운트되거나 <조건[show state 변경]>으로 인하여 재렌더링 될 경우에 아래의 코드를 작동시켜주세요. 라는 뜻
+    // useEffect()안에 return을 넣으면 컴포넌트가 언마운트 될 때 작동함.
+    // 즉, Detail 컴포넌트가 언마운트 될 때 타이머를 초기화 시켜주세요. 라는 뜻
     useEffect(()=>{
-      setTimeout( ()=>{ setShow(false) }, 2000);
-    });
+      let timer = setTimeout( ()=>{ setShow(false) }, 2000);
+
+      return ()=>{ clearTimeout(timer) }
+    }, [ show ]);
     
 
     return (
