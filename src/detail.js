@@ -57,7 +57,7 @@ function Detail(props){
             {
               show==true?
               <div className="alert_SM">
-                <p>재고가 얼마 남지 않았습니다</p>
+                <p>이 알림 메시지는 2초 뒤에 사라집니다.</p>
               </div>
               :
               null

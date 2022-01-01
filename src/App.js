@@ -1,9 +1,11 @@
 import { Navbar,Nav,NavDropdown,Form,Button,FormControl,Container,Carousel } from 'react-bootstrap';
 import React, { useState } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
-import './App.css';
 import Data from './data.js'
 import Detail from './detail.js'
+import axios from 'axios';
+
+import './App.css';
 
 function App() {
 
@@ -42,6 +44,20 @@ function App() {
                     })
                   }
                 </div>
+                <br/>
+                <button className="btn btn-primary" onClick={()=>{ 
+                  axios.get('/data.js')
+                  .then((result)=>{ console.log(result.data) })
+                  .catch(()=>{ alert("실패!") })
+            
+                   }}>다음 페이지</button>
+
+                <button className="btn btn-primary" onClick={()=>{ 
+                  axios.post('/data.js')
+                  .then((result)=>{ console.log(result.data) })
+                  .catch(()=>{ alert("실패!") })
+            
+                   }}>글쓰기</button>   
               </div>
             </Route>
             
