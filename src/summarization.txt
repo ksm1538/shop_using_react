@@ -347,3 +347,9 @@ axios.get('/data.js')
 }}>글쓰기</button>   
 
 
+21. build
+- 빌드 후 빌드 폴더 내의 파일들을 그대로 옮기면 된다.
+- github.io를 이용해 배포가 가능하다.
+react 배포 시 아래의 명령어를 통해 빌드가 가능하다.
+- npm run build
+- yarn build
