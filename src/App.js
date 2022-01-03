@@ -52,6 +52,7 @@ function App() {
             
                    }}>다음 페이지</button>
 
+                &nbsp;
                 <button className="btn btn-primary" onClick={()=>{ 
                   axios.post('/data.js')
                   .then((result)=>{ console.log(result.data) })
