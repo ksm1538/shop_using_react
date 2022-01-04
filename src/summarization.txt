@@ -354,3 +354,54 @@ react 배포 시 아래의 명령어를 통해 빌드가 가능하다.
 - npm run build
 - yarn build
   
+
+22. Context (컴포넌트가 많아 props가 불편할 경우)
+- React.createContext() 로 변수 생성
+- <범위 value={재고}> </범위> 이걸로 전송 원하는 컴포넌트를 감싼 후
+- 컴포넌트에서 useContext(변수)를 이용
+- 컴포넌트가 다른 파일에 있는 경우 createContext로 만든 변수를 export하여 컴포넌트에서 import 한 후 사용
+ex)
+import React, { useState, useContext } from 'react';
+
+...
+let sizeContext = React.createContext();
+
+function App() {
+	let [size, size_change] = useState([250,260,280]);
+
+	return (
+		...
+		<sizeContext.Provider value={size}>
+      <CompoTest/>
+    </sizeContext.Provider>
+		...
+	)
+}
+function CompoTest(){
+  let this_size = useContext(sizeContext);
+  return(
+    <div>
+        <h3>Context API - 1</h3>
+        {
+          this_size.map(function(item,cnt){
+            return(
+              <div>
+                {item}
+              </div>
+            )
+          })
+        }
+        <br/><br/>
+        <CompoTest2></CompoTest2>
+    </div>
+  )
+}
+function CompoTest2(){
+  let this_size = useContext(sizeContext);
+  return(
+    <div>
+      <h3>Context API - 2</h3>
+      <p>재고 : {this_size}</p>
+    </div>
+  )
+}

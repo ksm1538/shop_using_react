@@ -1,5 +1,5 @@
 import { Navbar,Nav,NavDropdown,Form,Button,FormControl,Container,Carousel } from 'react-bootstrap';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import Data from './data.js'
 import Detail from './detail.js'
@@ -7,9 +7,12 @@ import axios from 'axios';
 
 import './App.css';
 
+let sizeContext = React.createContext();
+
 function App() {
 
   let [shoesData, shoesData_change] = useState(Data);
+  let [size, size_change] = useState([250,260,280]);
 
   return (
     <div className="App">
@@ -59,6 +62,14 @@ function App() {
                   .catch(()=>{ alert("실패!") })
             
                    }}>글쓰기</button>   
+
+                <br/><br/>
+
+
+                <sizeContext.Provider value={size}>
+                  <CompoTest/>
+                </sizeContext.Provider>
+                
               </div>
             </Route>
             
@@ -75,8 +86,37 @@ function ShoesList(props){
       <img src={props.data.img} width="100%" />
       <h4>{props.data.title}</h4>
       <p>{props.data.content} & {props.data.price}</p>
-      </div>
+    </div>
   )
 }
 
+function CompoTest(){
+  let this_size = useContext(sizeContext);
+  return(
+    <div >
+        <h3>Context API - 1</h3>
+        {
+          this_size.map(function(item,cnt){
+            return(
+              <div>
+                {item}
+              </div>
+            )
+          })
+        }
+        <br/><br/>
+        <CompoTest2></CompoTest2>
+    </div>
+  )
+}
+
+function CompoTest2(){
+  let this_size = useContext(sizeContext);
+  return(
+    <div>
+      <h3>Context API - 2</h3>
+      <p>재고 : {this_size}</p>
+    </div>
+  )
+}
 export default App;
