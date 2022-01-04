@@ -405,3 +405,70 @@ function CompoTest2(){
     </div>
   )
 }
+
+
+23. react-transition-group
+- 애니메이션 디자인 도와주는 라이브러리
+- 설치
+  - yarn add react-transition-group
+  - npm install react-transition-group
+- 사용법
+  - in : 스위치. 변수일 경우 true일 때 애니메이션 적용
+  - classNames : css의 클래스명 지정
+  - timeout : 작동시간
+  - css의 클래스명
+    - .wow-enter : wow클래스의 등장 시 적용
+    - .wow-enter-active : wow클래스의 등장 중 적용 
+ex)
+(css파일)
+.wow-enter {
+    opacity : 0
+  }
+  
+.wow-enter-active {
+  opacity : 1;
+  transition : all 500ms;
+}
+
+(js파일)
+import {CSSTransition} from 'react-transition-group';
+...
+
+function Detail(){
+  ...
+  // 탭에 사용할 state 변수
+  let [tab_cursor, setTab_cursor] = useState(0);
+
+  // 애니메이션에 사용할 state 변수
+  let [animation_switch, setAnimation_switch] = useState(false);
+
+  return(
+    ...
+    <Nav variant="tabs" defaultActiveKey="link-2">
+      <Nav.Item>
+        <Nav.Link eventKey="link-1" onClick={()=>{setTab_cursor(1); setAnimation_switch(true)}}>Option 1</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link eventKey="link-2" onClick={()=>{setTab_cursor(2); setAnimation_switch(false)}}>Option 2</Nav.Link>
+      </Nav.Item>
+    </Nav>
+    <CSSTransition in={animation_switch} classNames="wow" timeout={500}>
+      <TabContent tab_cursor={tab_cursor}></TabContent>
+    </CSSTransition>      
+    ...
+
+  )
+}
+function TabContent(props){
+  var tab_cursor = props.tab_cursor;
+  if (tab_cursor == 0){
+    return <div>내용0</div>
+  } else if (tab_cursor == 1){
+    return <div>내용1</div>
+  } else if (tab_cursor == 2){
+    return <div>내용2</div>
+  }
+
+}
+
+

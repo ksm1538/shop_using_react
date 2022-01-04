@@ -65,17 +65,18 @@ function App() {
 
                 <br/><br/>
 
-
-                <sizeContext.Provider value={size}>
-                  <CompoTest/>
-                </sizeContext.Provider>
-                
               </div>
             </Route>
             
             <Route path="/detail/:id">
               <Detail data={shoesData}></Detail>
             </Route>
+
+            <Route path="/ContextAPI">
+              <sizeContext.Provider value={size}>
+                <CompoTest/>
+              </sizeContext.Provider>
+            </Route> 
     </div>
   );
 }

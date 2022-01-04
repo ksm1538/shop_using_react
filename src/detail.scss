@@ -18,3 +18,12 @@ $color_var : #0000FF;
 .alert_SM p {
     margin : 0;
 } 
+
+.wow-enter {
+    opacity : 0
+  }
+  
+.wow-enter-active {
+  opacity : 1;
+  transition : all 500ms;
+}
