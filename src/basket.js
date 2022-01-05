@@ -19,20 +19,31 @@ function Basket(props){
             <td>{a.name}</td>
             <td>{a.stock}</td>
             <td>
-                <button onClick={()=>{ props.dispatch({type: 'stockCntPlus'}) }}> + </button> &nbsp;
-                <button onClick={()=>{ props.dispatch({type: 'stockCntMinus'}) }}> - </button>
+                <button onClick={()=>{ props.dispatch({type: 'stockCntPlus', id:a.id}) }}> + </button> &nbsp;
+                <button onClick={()=>{ props.dispatch({type: 'stockCntMinus', id:a.id}) }}> - </button>
             </td>
           </tr>
           )
         })  }
       </Table>
+      {
+          props.alertCheck == true?(
+                <div className="alert_SM">
+                    <p>알림알림알림알림알림알림알림알림알림알림알림알림</p>
+                    <button onClick={()=>{ props.dispatch({type:'alertCancel'}) }}>닫기</button>
+                </div>
+          ):null
+      }
+      
     </div>
   )
 }
 
 function storeToProps(store){
+    console.log(store);
     return {
-        data : store
+        data : store.reducer,
+        alertCheck : store.alertReducer
     }
 }
 
