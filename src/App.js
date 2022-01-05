@@ -1,11 +1,14 @@
 import { Navbar,Nav,NavDropdown,Form,Button,FormControl,Container,Carousel } from 'react-bootstrap';
+import './App.css';
+
 import React, { useState, useContext } from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
-import Data from './data.js'
-import Detail from './detail.js'
 import axios from 'axios';
 
-import './App.css';
+import Data from './data.js'
+import Detail from './detail.js'
+import Basket from './basket.js'
+
 
 let sizeContext = React.createContext();
 
@@ -76,6 +79,10 @@ function App() {
               <sizeContext.Provider value={size}>
                 <CompoTest/>
               </sizeContext.Provider>
+            </Route> 
+
+            <Route path="/basket">
+              <Basket></Basket>
             </Route> 
     </div>
   );

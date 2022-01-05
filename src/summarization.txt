@@ -472,3 +472,101 @@ function TabContent(props){
 }
 
 
+24. redux
+- props 전송 없이 모든 컴포넌트가 state를 사용할 수 있게 도와주는 역할
+- 소규모 프로젝트에서는 불편하지만, 대규모 프로젝트, 사이트에서는 state 관리에 용이함.
+- 설치
+  - yarn add redux react-redux
+  - npm install redux react-redux
+    - redux : 데이터를 관리하는 기능
+    - react-redux : redux를 react에서 사용할 수 있게 하는 기능
+- 사용법
+  - 세팅
+    - index.js에 아래의 import 및 원하는 컴포넌트 감싼다.
+    - createStore를 이용해 redux용 state를 생성한다.
+    - <Provider>에 redux용 state를 prop처럼 보내준다.
+  - 사용
+    - function stateToProps() 를 하나 만들어주고 state를 props로 등록
+    - export default connect(state를props화)(Basket); 
+    - props 사용하듯 사용
+  - 수정
+    - reducer를 이용하여 수정
+    - 
+    ...
+    (index.js)
+    import {Provider} from 'react-redux';
+    import {createStore} from 'redux';
+
+    // default store 선언
+    let defaultStore = [{id : 0, name : 'reduxShoes', stock : 2}];
+
+    // reducer 선언
+    function reducer(store=defaultStore, action){
+      if (action.type === 'stockCntPlus') {
+        let copy = [...store];
+        copy[0].stock++;
+        return copy
+      } else if(action.type === 'stockCntMinus'){
+        let copy = [...store];
+        copy[0].stock--;
+        return copy
+      } else {
+        return store
+      }
+    }
+
+    // store선언
+    let store = createStore(reducer);
+
+    ReactDOM.render(
+      <React.StrictMode>
+        <BrowserRouter>
+          <Provider store={store}>
+            <App/>
+          </Provider>
+        </BrowserRouter>
+      </React.StrictMode>
+    );
+
+    (basket.js)
+    import React from 'react';
+    import {Table} from 'react-bootstrap';
+    import {connect} from 'react-redux';
+
+    function Basket(props){
+    return (
+      <div>
+        <Table responsive>
+          <tr>
+            <th>#</th>
+            <th>상품명</th>
+            <th>수량</th>
+            <th>변경</th>
+          </tr>
+          { props.data.map((a,i)=>{
+            return (
+            <tr key={i}>
+              <td>{a.id}</td>
+              <td>{a.name}</td>
+              <td>{a.stock}</td>
+              <td>
+                  <button onClick={()=>{ props.dispatch({type: 'stockCntPlus'}) }}> + </button> &nbsp;
+                  <button onClick={()=>{ props.dispatch({type: 'stockCntMinus'}) }}> - </button>
+              </td>
+            </tr>
+            )
+          })  }
+        </Table>
+      </div>
+    )
+  }
+
+    function storeToProps(store){
+        return {
+            data : store
+        }
+    }
+
+    export default connect(storeToProps)(Basket);
+
+
