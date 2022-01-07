@@ -25,6 +25,7 @@ function reducer(store=defaultStore, action){
     copy[action.id].stock--;
     return copy
   } else if(action.type == 'goodsAdd'){
+    //let index = store.findIndex((i)=>{return i.id == action.data.id});
     let copy = [...store];
 
     var check = false;

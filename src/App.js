@@ -2,7 +2,7 @@ import { Navbar,Nav,NavDropdown,Form,Button,FormControl,Container,Carousel } fro
 import './App.css';
 
 import React, { useState, useContext } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import Data from './data.js'
@@ -16,6 +16,7 @@ function App() {
 
   let [shoesData, shoesData_change] = useState(Data);
   let [size, size_change] = useState([250,260,280]);
+  
 
   return (
     <div className="App">
@@ -90,8 +91,9 @@ function App() {
 }
 
 function ShoesList(props){
+  let history = useHistory();
   return(
-    <div className="col-md-4">
+    <div className="col-md-4" onClick={()=>{history.push("/detail/"+props.data.id)}}>
       <img src={props.data.img} width="100%" />
       <h4>{props.data.title}</h4>
       <p>{props.data.content} & {props.data.price}</p>
