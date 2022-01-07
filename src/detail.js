@@ -3,6 +3,7 @@ import {CSSTransition} from 'react-transition-group';
 
 import React, {useState, useEffect}from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import {connect} from 'react-redux';
 import styled from 'styled-components';
 import './detail.scss';
 
@@ -55,7 +56,7 @@ function Detail(props){
           <h4 className="pt-5">{findGood.title}</h4>
           <p>{findGood.content}</p>
           <p>{findGood.price}</p>
-          <button className="btn btn-danger">주문하기</button> 
+          <button className="btn btn-danger" onClick={()=>{props.dispatch( {type: 'goodsAdd', data:{id:3, name:findGood.title, stock:4}} )}}>주문하기</button> 
           &nbsp;
           <button onClick={()=>{ history.goBack() }} className="btn btn-danger">뒤로가기</button> 
 
@@ -103,6 +104,14 @@ function TabContent(props){
   } else if (tab_cursor == 2){
     return <div>내용2</div>
   }
-
 }
-export default Detail
+
+function storeToProps(store){
+  return {
+      store : store.reducer, 
+      alertCheck : store.alertReducer
+  }
+}
+
+
+export default connect(storeToProps)(Detail);

@@ -40,7 +40,6 @@ function Basket(props){
 }
 
 function storeToProps(store){
-    console.log(store);
     return {
         data : store.reducer,
         alertCheck : store.alertReducer

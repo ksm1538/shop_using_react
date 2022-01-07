@@ -73,6 +73,7 @@ function App() {
             
             <Route path="/detail/:id">
               <Detail data={shoesData}></Detail>
+              <Basket></Basket>
             </Route>
 
             <Route path="/ContextAPI">

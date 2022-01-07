@@ -491,11 +491,15 @@ function TabContent(props){
     - props 사용하듯 사용
   - 수정
     - reducer를 이용하여 수정
+    - reducer의 두번 째 인자는 dispatch를 통해 받는 데이터임.
   - 여러 reducer 세팅 방법
     - combineReducers를 이용하여 reducer를 합쳐 하나의 store에 저장
     - storeToProps시, 사용 법이 조금 달라짐
       - combineReducers 사용 x → data : store
       - combineReducers 사용 o → data : store.reducer
+    - 페이지 이동 시에 store가 초기화 되는 이유?
+      - 개발 단계의 미리보기에서는 이러한 현상이 발생
+      - 서버에 업로드하여 직접 확인하면 정상 작동하는 것을 확인 가능
     ...
     (index.js)
     import {Provider} from 'react-redux';
