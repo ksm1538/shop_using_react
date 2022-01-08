@@ -657,3 +657,53 @@ function Basket(props){
 export default Basket;
 
 
+26. 조건문 유형
+- 컴포넌트 안에서 사용할 수 있는 if/else (JSX 내에서 사용 불가)
+function Component() {
+  if ( true ) {
+    return <p>참</p>;
+  } else {
+    return <p>참이 아닐 경우</p>;
+  }
+} 
+
+- 삼항연산자(JSX내에서 사용 가능, 중첩 가능)
+function Component() {
+  return (
+    <div>
+      {
+        1 === 1
+        ? <p>참</p>
+        : <p>참이 아닐 경우</p>
+      }
+    </div>
+  )
+} 
+
+- swtich / case
+function reducer(state, action){
+  switch (action.type) {
+    case 'add' :
+      return state++;
+    case 'minus' : 
+      return state--;
+    default : 
+      return state
+  }
+}
+
+- 변수 이용(아래의 소스에서는 <p>상품정보</p>가 보이게 된다.)
+let tabUI = useState({ 
+  info : <p>상품정보</p>
+  buy : <p>구매</p>
+});
+function Component() {
+  var cuspos = 'info';
+  return (
+    <div>
+      {
+        tabUI[cuspos]
+      }
+    </div>
+  )
+} 
