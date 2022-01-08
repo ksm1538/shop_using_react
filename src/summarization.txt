@@ -707,3 +707,50 @@ function Component() {
     </div>
   )
 } 
+
+
+27. 성능 개선
+- 함수 or 오브젝트는 변수에 담아서 사용하자.
+  -컴포넌트가 재렌더링될 때 변수에 저장되지 않은 함수, 오브젝트는 매번 새로운 메모리 영역을 할당되기 때문.
+function Component(){
+  return (
+    <div style={ {color : 'black'} } ></div>
+  )
+}
+↓
+var styleObject = {color : 'black'};
+function Component(){
+  return (
+    <div style={ styleObject } ></div>
+  )
+}
+
+- 애니메이션 줄 때 레이아웃 변경 애니메이션은 좋지 않다.
+  - 레이아웃 : width, margin, padding, left right top bottom margin 등
+    - js or transition으로 레이아웃을 변경하는 건 브라우저 입장에서 부담이 감.
+  → 해결법 : transform(사이즈 변경, 좌표이동, 회전 등 가능), opacity 같은 CSS 속성을 이용
+
+- Component import 시, lazy 하게 import 하는 법
+  - App.js에서 많은 컴포넌트를 사용하게 되면, 초기 접속 시 모든 컴포넌트를 가져오며 초기 접속 속도가 느려진다.
+  - 하지만, 당장 사용되지 않는 컴포넌트는 필요해질 때 import하게 할 수 있다.
+  - 사용법
+    - react 라이브러리에서 lazy, suspense import
+    - lazy 함수를 이용해 import
+    - Suspense Component로 원하는 Component 감싸주기
+    - fallback : Component 로딩 전까지 띄울 HTML
+  import React, {useState, useContext, lazy, Suspense} from 'react';
+  let Detail = lazy( ()=>{ return import('./Detail.js') } );
+  ...
+  render (
+    <Suspense fallback={ <div>Loading...</div> }>
+      <Detail/>
+    </Suspense>
+  )
+
+- React Dev Tools (React Chrome 확장 프로그램)
+  - Components : 현재 페이지에 사용된 모든 Component 나열
+    - Component 클릭 시 사용중인 props, state, hook 등 나열 
+  - Profiler : 컴포넌트 렌더링 되는 속도 측정
+    - 녹화 버튼(파란 원 아이콘) 클릭 
+    - 사이트 탐색
+    - 녹화 버튼 다시 클릭
