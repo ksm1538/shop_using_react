@@ -693,7 +693,7 @@ function reducer(state, action){
 }
 
 - 변수 이용(아래의 소스에서는 <p>상품정보</p>가 보이게 된다.)
-let tabUI = useState({ 
+let [tabUI, change_tabUI] = useState({ 
   info : <p>상품정보</p>
   buy : <p>구매</p>
 });
